@@ -1,0 +1,7 @@
+#root {
+  max-width: 450px; /* 모바일 크기 고정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  min-height: 100vh; /* 화면 전체 높이 차지 */
+  background-color: #ffffff; /* 배경은 흰색 */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05); /* 웹에서 볼 때 경계선 효과 */
+}
