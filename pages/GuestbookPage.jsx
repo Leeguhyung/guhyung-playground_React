@@ -16,7 +16,7 @@ const GuestbookPage = () => {
   // 2. [GET] 서버에서 목록 불러오기 (규스픽과 동일한 방식)
   const fetchMessages = () => {
     axios
-      .get("https://localhost:5000/api/guestbook")
+      .get("http://15.165.40.25:5000/api/guestbook")
       .then((res) => setGuestbookData(res.data))
       .catch((err) => console.error(err));
   };
