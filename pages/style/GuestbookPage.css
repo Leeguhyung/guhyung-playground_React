@@ -1,0 +1,106 @@
+/* 전체 컨테이너를 부모 높이에 맞춤 */
+/* 부모가 높이를 꽉 채우고 있어야 자식의 100%가 의미가 있습니다 */
+
+.guestbook-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 부모(Root)가 고정되어 있으므로 100% 사용 */
+  background-color: #f2f4f6;
+  overflow: hidden; /* 전체 페이지 스크롤 방지 */
+}
+
+/* 상단 고정 영역 (제목 + 폼) */
+.fixed-top-section {
+  flex-shrink: 0; /* 내용이 많아져도 이 영역은 줄어들지 않음 */
+  padding: 24px 20px 16px;
+}
+
+.guestbook-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #191f28;
+  margin-bottom: 4px;
+}
+
+.guestbook-subtitle {
+  font-size: 14px;
+  color: #6b7684;
+  margin-bottom: 20px;
+}
+
+/* 토스 스타일 입력창 */
+.guestbook-form {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.input-nickname,
+.input-message {
+  border: none;
+  background-color: #f9fafb;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.input-message {
+  min-height: 60px;
+  resize: none;
+}
+
+.submit-btn {
+  background-color: #3182f6;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 핵심: 리스트만 스크롤되도록 설정 */
+.scrollable-list-section {
+  flex-grow: 1; /* 남은 화면 공간을 다 차지함 */
+  overflow-y: auto; /* 내용이 많아지면 스크롤 발생 */
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 카드 디자인 */
+.guestbook-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 20px;
+  flex-shrink: 0; /* 카드가 찌그러지지 않게 방지 */
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.nickname {
+  font-weight: 600;
+  color: #333d4b;
+}
+
+.date {
+  font-size: 12px;
+  color: #8b95a1;
+}
+
+.message {
+  font-size: 15px;
+  color: #4e5968;
+  margin: 0;
+  line-height: 1.5;
+}

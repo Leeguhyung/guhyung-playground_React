@@ -1,8 +1,24 @@
+/* Navigation.css */
 .Navigation {
-  width: 100%;
+  /* 버튼들을 가로로 정렬하고 간격을 벌려줍니다 */
   display: flex;
-  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  overflow-x: auto; /* 모바일 환경을 고려한 가로 스크롤 설정 */
   justify-content: space-around;
-  padding: 20px 0px;
-  border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+/* 안트디자인 버튼의 기본 스타일을 덮어쓰기 위해 .ant-btn 클래스를 활용하세요 */
+.Navigation .ant-btn {
+  background-color: #3182f6; /* 토스 블루 */
+  color: white;
+  border: none;
+  height: 48px;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 변화 */
+}
+
+.Navigation .ant-btn:active {
+  transform: scale(0.95); /* 눌렀을 때 쫀득한 클릭감 */
 }

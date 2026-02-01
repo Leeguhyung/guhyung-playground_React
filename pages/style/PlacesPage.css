@@ -1,0 +1,53 @@
+/* 1. 최상위 컨테이너 */
+.places-container {
+  display: flex;
+  flex-direction: column;
+  /* height: 100% 대신 vh를 써서 강제로 높이를 잡으세요 */
+  height: calc(100vh - 60px); /* 전체 높이에서 헤더/네비바 높이만큼 뺌 */
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* 2. 지도 영역 (사라지지 않게 강제 고정) */
+.map-display {
+  width: 100%;
+  min-height: 300px; /* 최소 높이를 보장해서 사라짐 방지 */
+  height: 300px;
+  flex-shrink: 0; /* 리스트에 밀려서 작아지지 않게 함 */
+  border-radius: 20px;
+  background-color: #f2f4f6;
+  margin-bottom: 16px;
+}
+
+/* 3. 리스트 영역 */
+.places-list-section {
+  flex-grow: 1; /* 남은 모든 공간을 차지 */
+  overflow-y: auto; /* 이 안에서만 스크롤 */
+  padding-right: 4px;
+}
+
+.place-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 16px;
+  color: #333d4b;
+}
+
+.date {
+  font-size: 13px;
+  color: #8b95a1;
+}

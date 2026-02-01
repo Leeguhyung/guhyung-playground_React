@@ -1,21 +1,36 @@
 import { Button } from "antd";
 import "./style/Navigation.css";
 import { useNavigate } from "react-router-dom";
+
 const Navigation = () => {
   const nav = useNavigate();
+
   return (
     <div className="Navigation">
-      <Button size="large" type="primary" onClick={() => nav("/")}>
+      {/* shape="round"를 사용하면 양 끝이 반원형으로 둥글어집니다 */}
+      <Button
+        className="toss-btn"
+        size="large"
+        type="primary"
+        onClick={() => nav("/")}
+      >
         자기소개
       </Button>
-      <Button size="large" type="primary" onClick={() => nav("/Places")}>
-        내가 가본곳들
+      <Button
+        className="toss-btn"
+        size="large"
+        type="primary"
+        onClick={() => nav("/Places")}
+      >
+        Gu's Pick
       </Button>
-      <Button size="large" type="primary" onClick={() => nav("/Food")}>
-        맛집리스트
-      </Button>
-      <Button size="large" type="primary" onClick={() => nav("/Diary")}>
-        일기장
+      <Button
+        className="toss-btn"
+        size="large"
+        type="primary"
+        onClick={() => nav("/GuestbookPage")}
+      >
+        방명록
       </Button>
     </div>
   );
