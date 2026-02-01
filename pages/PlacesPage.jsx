@@ -12,7 +12,7 @@ const PlacesPage = () => {
   // [추가] Axios로 서버 데이터 가져오기
   useEffect(() => {
     axios
-      .get("https://localhost:5000/api/guspick")
+      .get("localhost:5000/api/guspick")
       .then((res) => setPlacesData(res.data))
       .catch((err) => console.error(err));
   }, []);
