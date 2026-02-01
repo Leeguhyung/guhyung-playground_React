@@ -34,7 +34,7 @@ const GuestbookPage = () => {
     if (!newNickname || !newMessage) return;
 
     axios
-      .post("localhost:5000/api/guestbook", {
+      .post("http://15.165.40.25:5000/api/guestbook", {
         nickname: newNickname,
         message: newMessage,
         date: dayjs().format("YYYY-MM-DD HH:mm"),
