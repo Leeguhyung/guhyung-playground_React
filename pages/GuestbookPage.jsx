@@ -16,9 +16,7 @@ const GuestbookPage = () => {
   // 2. [GET] 서버에서 목록 불러오기 (규스픽과 동일한 방식)
   const fetchMessages = () => {
     axios
-      .get(
-        "https://5000-firebase-guhyung-playground-1769828944144.cluster-va5f6x3wzzh4stde63ddr3qgge.cloudworkstations.dev/api/guestbook"
-      )
+      .get("https://localhost:5000/api/guestbook")
       .then((res) => setGuestbookData(res.data))
       .catch((err) => console.error(err));
   };
@@ -36,14 +34,11 @@ const GuestbookPage = () => {
     if (!newNickname || !newMessage) return;
 
     axios
-      .post(
-        "https://5000-firebase-guhyung-playground-1769828944144.cluster-va5f6x3wzzh4stde63ddr3qgge.cloudworkstations.dev/api/guestbook",
-        {
-          nickname: newNickname,
-          message: newMessage,
-          date: dayjs().format("YYYY-MM-DD HH:mm"),
-        }
-      )
+      .post("https://localhost:5000/api/guestbook", {
+        nickname: newNickname,
+        message: newMessage,
+        date: dayjs().format("YYYY-MM-DD HH:mm"),
+      })
       .then(() => {
         setNewNickname("");
         setNewMessage("");

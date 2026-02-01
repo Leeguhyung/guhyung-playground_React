@@ -12,9 +12,7 @@ const PlacesPage = () => {
   // [추가] Axios로 서버 데이터 가져오기
   useEffect(() => {
     axios
-      .get(
-        "https://5000-firebase-guhyung-playground-1769828944144.cluster-va5f6x3wzzh4stde63ddr3qgge.cloudworkstations.dev/api/guspick"
-      )
+      .get("https://localhost:5000/api/guspick")
       .then((res) => setPlacesData(res.data))
       .catch((err) => console.error(err));
   }, []);
