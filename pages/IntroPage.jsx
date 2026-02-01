@@ -12,11 +12,7 @@ const IntroPage = () => {
           {/* 1. 증명사진 영역 */}
           <Col span={24}>
             <div className="profile-img-box">
-              <img
-                src="/public/myphoto.jpg"
-                alt="이규형"
-                className="profile-img"
-              />
+              <img src="/myphoto.jpg" alt="이규형" className="profile-img" />
             </div>
           </Col>
 
