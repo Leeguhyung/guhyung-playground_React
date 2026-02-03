@@ -20,7 +20,7 @@ const Navigation = () => {
         className="toss-btn"
         size="large"
         type="primary"
-        onClick={() => nav("/Places")}
+        onClick={() => nav("/GusPick")}
       >
         Gu's Pick
       </Button>

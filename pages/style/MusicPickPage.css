@@ -121,9 +121,3 @@
 }
 
 /* 우측 끝에 배치되는 날짜 스타일 */
-.date {
-  font-size: 12px;
-  color: #8b95a1; /* 토스 특유의 연한 회색 */
-  margin-left: auto; /* 왼쪽 공간을 다 밀어내서 우측 끝으로 보냄 */
-  white-space: nowrap; /* 날짜가 줄바꿈되지 않게 방지 */
-}

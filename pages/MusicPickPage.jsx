@@ -88,7 +88,7 @@ const MusicPickPage = () => {
               onChange={onChangeUrl}
             />
             <input
-              placeholder="내 이름/닉네임"
+              placeholder="본인 이름"
               value={inputs.recommender}
               onChange={onChangeRecommender}
             />

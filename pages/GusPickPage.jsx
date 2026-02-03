@@ -58,7 +58,7 @@ const GusPickPage = () => {
             <span className="emoji">{place.emoji}</span>
             <div className="text-group">
               <strong className="name">{place.title}</strong>
-              <span className="date">{place.date} 방문</span>
+              <div className="date">{place.date} 방문</div>
             </div>
           </div>
         ))}
