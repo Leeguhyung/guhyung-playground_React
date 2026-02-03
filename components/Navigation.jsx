@@ -32,6 +32,14 @@ const Navigation = () => {
       >
         방명록
       </Button>
+      <Button
+        className="toss-btn"
+        size="large"
+        type="primary"
+        onClick={() => nav("/MusicPickPage")}
+      >
+        MUSIC PICK
+      </Button>
     </div>
   );
 };

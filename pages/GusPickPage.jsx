@@ -5,14 +5,14 @@ import "./style/PlacesPage.css";
 // 1. 데이터 영역 (순서 상관없이 추가해도 됩니다)
 // PlacesPage.jsx 상단 데이터
 
-const PlacesPage = () => {
+const GusPickPage = () => {
   const mapElement = useRef(null);
   const [placesData, setPlacesData] = useState([]);
 
   // [추가] Axios로 서버 데이터 가져오기
   useEffect(() => {
     axios
-      .get("http://15.165.40.25:5000/api/guspick")
+      .get(`/api/guspick`)
       .then((res) => setPlacesData(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -67,4 +67,4 @@ const PlacesPage = () => {
   );
 };
 
-export default PlacesPage;
+export default GusPickPage;

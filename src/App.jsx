@@ -4,7 +4,8 @@ import DiaryPages from "../pages/DiaryPage";
 import FoodPages from "../pages/FoodPage";
 import GuestbookPage from "../pages/GuestbookPage";
 import IntroPage from "../pages/IntroPage";
-import PlacesPage from "../pages/PlacesPage";
+import MusicPickPage from "../pages/MusicPickPage";
+import GusPickPage from "../pages/GusPickPage";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
@@ -16,10 +17,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<IntroPage />} />
-        <Route path="/Places" element={<PlacesPage />} />
-        <Route path="/Food" element={<FoodPages />} />
+        <Route path="/Places" element={<GusPickPage />} />
         <Route path="/Diary" element={<DiaryPages />} />
         <Route path="/GuestBookPage" element={<GuestbookPage />} />
+        <Route path="/MusicPickPage" element={<MusicPickPage />} />
       </Routes>
     </div>
   );

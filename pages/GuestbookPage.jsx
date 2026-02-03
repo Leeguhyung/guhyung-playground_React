@@ -8,15 +8,15 @@ dayjs.extend(relativeTime); // 플러그인 등록
 dayjs.locale("ko"); // 전역 한국어 설정
 
 const GuestbookPage = () => {
-  // 1. mockData 대신 빈 배열로 시작
   const [guestbookData, setGuestbookData] = useState([]);
   const [newNickname, setNewNickname] = useState("");
   const [newMessage, setNewMessage] = useState("");
+  const [newPassword, setNewPassword] = useState(""); // 1. 비밀번호 상태 추가
 
-  // 2. [GET] 서버에서 목록 불러오기 (규스픽과 동일한 방식)
   const fetchMessages = () => {
+    // 이전과 동일 (단, 배포 시에는 앞에 http://IP:5000 붙는 거 확인!)
     axios
-      .get("http://15.165.40.25:5000/api/guestbook")
+      .get(`/api/guestbook`)
       .then((res) => setGuestbookData(res.data))
       .catch((err) => console.error(err));
   };
@@ -25,54 +25,76 @@ const GuestbookPage = () => {
     fetchMessages();
   }, []);
 
-  const onChangeNickname = (e) => setNewNickname(e.target.value);
-  const onChangeMessage = (e) => setNewMessage(e.target.value);
-
-  // 3. [POST] 서버에 저장하기 (.then 방식)
-  const handleAddMessage = (e) => {
-    e.preventDefault();
-    if (!newNickname || !newMessage) return;
+  // 2. 삭제 함수 추가
+  const handleDelete = (id) => {
+    const inputPassword = prompt("삭제를 원하시면 비밀번호를 입력하세요.");
+    if (!inputPassword) return;
 
     axios
-      .post("http://15.165.40.25:5000/api/guestbook", {
+      .delete(`/api/guestbook/${id}`, {
+        data: { password: inputPassword }, // 몽고디비는 _id 기준 삭제
+      })
+      .then(() => {
+        alert("삭제되었습니다.");
+        fetchMessages();
+      })
+      .catch((err) => {
+        alert(err.response?.data?.message || "삭제 실패");
+      });
+  };
+
+  const handleAddMessage = (e) => {
+    e.preventDefault();
+    if (!newNickname || !newMessage || !newPassword) {
+      alert("성명, 내용, 비밀번호를 모두 입력해주세요.");
+      return;
+    }
+
+    axios
+      .post(`/api/guestbook`, {
         nickname: newNickname,
         message: newMessage,
+        password: newPassword, // 3. 전송 데이터에 비밀번호 포함
         date: dayjs().format("YYYY-MM-DD HH:mm"),
       })
       .then(() => {
         setNewNickname("");
         setNewMessage("");
-        fetchMessages(); // 저장 후 목록 새로고침
+        setNewPassword(""); // 입력창 초기화
+        fetchMessages();
       })
-      .catch((err) => {
-        console.error(err);
-        alert("저장에 실패했습니다.");
-      });
+      .catch((err) => console.error(err));
   };
 
   return (
     <div className="guestbook-container">
-      {/* 1. 고정 헤더 영역 */}
-
       <div className="fixed-top-section">
         <header className="guestbook-header">
           <h1 className="guestbook-title">방명록</h1>
-          <p className="guestbook-subtitle">따뜻한 한마디를 남겨주세요</p>
         </header>
 
-        {/* 2. 입력 폼 영역 */}
         <form className="guestbook-form" onSubmit={handleAddMessage}>
-          <input
-            className="input-nickname"
-            placeholder="성명"
-            value={newNickname}
-            onChange={onChangeNickname}
-          />
+          <div className="input-group">
+            <input
+              className="input-nickname"
+              placeholder="성명"
+              value={newNickname}
+              onChange={(e) => setNewNickname(e.target.value)}
+            />
+            {/* 4. 비밀번호 입력창 추가 */}
+            <input
+              type="password"
+              className="input-password"
+              placeholder="비밀번호"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+          </div>
           <textarea
             className="input-message"
             placeholder="내용을 입력하세요"
             value={newMessage}
-            onChange={onChangeMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
           />
           <button type="submit" className="submit-btn">
             등록하기
@@ -80,13 +102,23 @@ const GuestbookPage = () => {
         </form>
       </div>
 
-      {/* 3. 스크롤 가능한 리스트 영역 */}
       <div className="scrollable-list-section">
         {guestbookData.map((item) => (
-          <div key={item.id} className="guestbook-card">
+          <div key={item._id} className="guestbook-card">
+            {" "}
+            {/* 5. item.id 대신 item._id 사용 */}
             <div className="card-top">
               <span className="nickname">{item.nickname}</span>
-              <span className="date">{item.date}</span>
+              <div className="top-right">
+                <span className="date">{item.date}</span>
+                {/* 6. 삭제 버튼 추가 */}
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(item._id)}
+                >
+                  삭제
+                </button>
+              </div>
             </div>
             <p className="message">{item.message}</p>
           </div>
